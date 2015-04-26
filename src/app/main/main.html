@@ -1,0 +1,33 @@
+<div layout="vertical" layout-fill>
+
+  <md-content>
+    <header ng-include="'app/components/navbar/navbar.html'"></header>
+
+    <section class="jumbotron">
+        <form ng-submit="onSearchChange()">
+          <md-input-container class="search">
+            <label>Recherche</label>
+            <input type="text" ng-model="searchString">
+          </md-input-container>
+        </form>
+    </section>
+
+    <div class="techs" layout-align="center">
+      <md-card ng-repeat="awesomeThing in awesomeThings">
+        <img ng-src="{{awesomeThing.url}}" class="md-card-image" alt="{{awesomeThing.title}}">
+        <md-card-content>
+            <img class="pull-right" ng-src="{{awesomeThing.ownerInfo.profileurl}}" alt="{{awesomeThing.ownerInfo.username}}">
+            <h3>{{awesomeThing.title}}</h3>
+            <p>by {{awesomeThing.ownerInfo.username}}</p>
+        </md-card-content>
+      </md-card>
+    </div>
+
+    <footer>
+      <md-toolbar layout="row" layout-align="center center">
+        <p>With ♥ from <a href="https://github.com/Zeboch">Fabien Raynaud</a></p>
+      </md-toolbar>
+    </footer>
+  </md-content>
+
+</div>
