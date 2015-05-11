@@ -43,10 +43,10 @@ module.exports = function(options) {
       .pipe($.rev())
       .pipe(jsFilter)
       .pipe($.ngAnnotate())
-      .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', options.errorHandler('Uglify'))
+      //.pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', options.errorHandler('Uglify'))
       .pipe(jsFilter.restore())
       .pipe(cssFilter)
-      .pipe($.csso())
+      //.pipe($.csso())
       .pipe(cssFilter.restore())
       .pipe(assets.restore())
       .pipe($.useref())
@@ -56,7 +56,8 @@ module.exports = function(options) {
         empty: true,
         spare: true,
         quotes: true,
-        conditionals: true
+        conditionals: true,
+        comments: true
       }))
       .pipe(htmlFilter.restore())
       .pipe(gulp.dest(options.dist + '/'))
