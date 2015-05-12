@@ -1,6 +1,7 @@
 <div layout="vertical" layout-fill>
 
   <md-content>
+
     <header ng-include="'app/components/navbar/navbar.html'"></header>
 
     <section class="jumbotron">
@@ -14,19 +15,30 @@
 
     <div class="techs" layout-align="center">
       <md-card ng-repeat="awesomeThing in awesomeThings">
-        <img ng-src="{{awesomeThing.url}}" class="md-card-image" alt="{{awesomeThing.title}}">
+        <img ng-src="{{awesomeThing.url}}" class="md-card-image" alt="{{awesomeThing.title}}" ng-click="showAdvanced(awesomeThing)">
         <md-card-content>
             <img class="pull-right" ng-src="{{ getAvatar(awesomeThing.ownerInfo) }}" alt="{{awesomeThing.ownerInfo.username._content}}">
             <h3>{{awesomeThing.title}}</h3>
-            <a ng-href="{{awesomeThing.ownerInfo.profileurl._content}}"><p>by {{awesomeThing.ownerInfo.username._content}}</p></a>
+            <p>by <a ng-href="{{awesomeThing.ownerInfo.profileurl._content}}">{{awesomeThing.ownerInfo.username._content}}</a></p>
         </md-card-content>
       </md-card>
     </div>
 
     <footer>
+
+      <section class="jumbotron" layout="row" layout-sm="column" layout-align="center center">
+        <md-input-container>
+          <label>Email</label>
+          <input ng-model="email" type="email">
+        </md-input-container>
+        <md-button class="md-raised md-primary">Recevoir la newsletter</md-button>
+      </section>
+
+
       <md-toolbar layout="row" layout-align="center center">
-        <p>With ♥ from <a href="https://github.com/Zeboch">{{user}}</a></p>
+        <p>With ☻ from <a href="https://github.com/Zeboch">{{user}}</a></p>
       </md-toolbar>
+
     </footer>
   </md-content>
 

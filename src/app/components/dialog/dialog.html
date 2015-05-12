@@ -1,0 +1,13 @@
+<md-dialog>
+  <form style="overflow: auto;">
+  <md-dialog-content class="sticky-container" 
+    <div style="padding: 0 10px;" layout="column" layout-align="center center">
+      <img style="margin: auto; max-width: 100%;" ng-src="{{item.url}}">
+      <p>
+        {{item.title}}
+      </p>
+      <p>by <a ng-href="{{item.ownerInfo.profileurl._content}}">{{item.ownerInfo.username._content}}</a></p>
+    </div>
+  </md-dialog-content>
+  </form>
+</md-dialog>

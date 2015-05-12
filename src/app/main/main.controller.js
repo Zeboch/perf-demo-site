@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('pds')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, $mdDialog) {
     $scope.searchString = '';
     $scope.user = 'Fabien Raynaud';
+    $scope.email = '';
 
     $scope.getAvatar = function(ownerInfo){
       var avatarUrl = 'https://www.flickr.com/images/buddyicon.gif';
@@ -11,6 +12,14 @@ angular.module('pds')
         avatarUrl = 'http://farm' + ownerInfo.iconfarm + '.staticflickr.com/' + ownerInfo.iconserver + '/buddyicons/' + ownerInfo.nsid + '.jpg';
       }
       return avatarUrl;
+    };
+
+    $scope.showAdvanced = function(item){
+      $mdDialog.show({
+        controller: 'DialogCtrl',
+        locals: { item: item },
+        templateUrl: 'app/components/dialog/dialog.html'
+      })
     };
 
     $scope.onSearchChange = function(){
@@ -35,7 +44,7 @@ angular.module('pds')
           $scope.awesomeThings = data.photos.photo;
 
           angular.forEach($scope.awesomeThings, function(photo){
-            photo.url = 'http://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_q.jpg';
+            photo.url = 'http://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
             if(photo.owner){
               $http({
                 method: 'GET',
@@ -70,7 +79,7 @@ angular.module('pds')
           $scope.awesomeThings = data.photos.photo;
 
           angular.forEach($scope.awesomeThings, function(photo){
-            photo.url = 'http://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_q.jpg';
+            photo.url = 'http://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
             if(photo.owner){
               $http({
                 method: 'GET',
